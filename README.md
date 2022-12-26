@@ -39,7 +39,7 @@ git clone https://github.com/Evertonmag/MiniBlog.git
 4- Entre na pasta do projeto
 
 ```shell
-cd .\SecretWord\PrimeiroProjeto\secret_word\
+cd .\MiniBlog\Project\miniblog
 ```
 
 5-Inicie o projeto pelo npm
