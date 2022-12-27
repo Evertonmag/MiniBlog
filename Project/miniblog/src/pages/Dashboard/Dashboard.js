@@ -6,8 +6,13 @@ import { Link } from "react-router-dom";
 import { useAuthValue } from "../../context/AuthContext";
 import { useFetchDocuments } from "../../hooks/useFetchDocuments";
 import { useDeleteDocument } from "../../hooks/useDeleteDocument";
+import { useState } from "react";
+import Modal from "../../components/Modal";
 
 const Dashboard = () => {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [postId, setPostId] = useState(null);
+
   const { user } = useAuthValue();
   const uid = user.uid;
 
@@ -51,8 +56,17 @@ const Dashboard = () => {
                   >
                     Editar
                   </Link>
-                  <button
+                  {/* <button
                     onClick={() => deleteDocument(post.id)}
+                    className="btn btn-outline btn-danger"
+                  >
+                    Excluir
+                  </button> */}
+                  <button
+                    onClick={() => {
+                      setIsModalVisible(true);
+                      setPostId(post.id);
+                    }}
                     className="btn btn-outline btn-danger"
                   >
                     Excluir
@@ -60,6 +74,33 @@ const Dashboard = () => {
                 </div>
               </div>
             ))}
+
+          {isModalVisible ? (
+            <Modal onClose={() => setIsModalVisible(false)}>
+              <h2>Deseja realmente excluir?</h2>
+              <p>
+                Ao clicar sim o item será removido permanetemente, tem certeza
+                disso?
+              </p>
+              <div className="modal-footer">
+                <button
+                  className="btn btn-outline btn-dark"
+                  onClick={() => setIsModalVisible(false)}
+                >
+                  cancelar
+                </button>
+                <button
+                  className="btn btn-outline btn-danger"
+                  onClick={() => {
+                    deleteDocument(postId);
+                    setIsModalVisible(false);
+                  }}
+                >
+                  Sim, quero remover!
+                </button>
+              </div>
+            </Modal>
+          ) : null}
         </>
       )}
     </div>
