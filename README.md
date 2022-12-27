@@ -42,7 +42,14 @@ git clone https://github.com/Evertonmag/MiniBlog.git
 cd .\SecretWord\PrimeiroProjeto\secret_word\
 ```
 
-5-Inicie o projeto pelo npm
+5- Instale as dependencias
+
+```shell
+npm i react-router-dom 
+npm i firebase
+```
+
+6- Inicie o projeto pelo npm
 
 ```shell
 npm start
